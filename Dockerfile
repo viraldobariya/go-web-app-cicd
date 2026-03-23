@@ -1,0 +1,28 @@
+#First stage
+
+FROM golang:1.23 AS base
+
+WORKDIR /app
+
+COPY go.mod .
+
+RUN go mod download
+
+COPY . .
+
+RUN go build -o main .
+
+
+#Second stage
+
+FROM gcr.io/distroless/base
+
+WORKDIR /app
+
+COPY --from=base /app/main .
+
+COPY --from=base /app/static ./static
+
+EXPOSE 8080
+
+ENTRYPOINT [ "./main" ]
