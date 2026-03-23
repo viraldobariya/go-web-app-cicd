@@ -8,7 +8,7 @@ image:
   repository: viraldobariya33/go-app
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "23456696405"
+  tag: "23457484899"
 
 ingress:
   enabled: false
